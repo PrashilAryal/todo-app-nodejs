@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo</title>
+    <style>
+      .title {
+        text-align: center;
+      }
+      .todoContainer {
+        margin-top: 50px;
+      }
+      .todoContainer ul {
+      }
+      .todoContainer ul li {
+        /* background-color: red; */
+        padding-left: auto;
+        padding-right: auto;
+        display: flex;
+        margin-top: 10px;
+        text-align: center;
+      }
+      form {
+        text-align: center;
+      }
+      .addBtn {
+        background-color: navy;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 15px;
+        height: 20px;
+      }
+      .deleteBtn {
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 20px;
+      }
+      .taskBtn {
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 20px;
+      }
+      .taskCompleted {
+        text-decoration: line-through;
+        border-color: #fff;
+      }
+      .box {
+        background-color: red;
+        height: 20px;
+        width: 20px;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">Todo Application</h1>
+    <form action="/logout">
+      <button type="submit">Logout</button>
+    </form>
+    <form action="/todo/add-todo" method="post">
+      <input type="text" name="todo" placeholder="Enter todo" />
+      <button type="submit" class="addBtn">Add</button>
+    </form>
+
+    <div class="todoContainer">
+      <% items.forEach((item,index)=>{ %>
+      <ul>
+        <li
+          class="<%= (item.iscomplete=='0') ? 'taskIncomplete' : 'taskCompleted' %>"
+        >
+          <%= item.title %>
+          <form action="/todo/remove-todo" method="post">
+            <input type="text" value="<%= item.id %>" name="id" hidden />
+            <button
+              type="submit"
+              value="<%= index %>"
+              name="delete"
+              class="deleteBtn"
+            >
+              Delete
+            </button>
+          </form>
+          <form action="/todo/task-completed" method="post">
+            <input type="text" value="<%= item.id %>" name="id" hidden />
+            <input
+              type="text"
+              value="<%= item.iscomplete===0 ? '1' : '0' %>"
+              name="isCompleted"
+              hidden
+            />
+            <button type="submit" class="taskBtn">
+              <%= item.iscomplete===0 ? "Completed" : "Incomplete" %>
+            </button>
+          </form>
+        </li>
+      </ul>
+      <% }) %>
+    </div>
+  </body>
+</html>

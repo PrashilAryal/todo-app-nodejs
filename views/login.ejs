@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      .login {
+        margin: auto;
+        text-align: center;
+        background-color: rgb(160, 180, 246);
+        border-radius: 10px;
+        margin: 10px;
+        height: 300px;
+      }
+      .login__title {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+      }
+      .login__title h1 {
+        color: blue;
+      }
+      .login form {
+        margin-top: 50px;
+      }
+      .login form label {
+        color: white;
+      }
+      .login form input {
+        height: 25px;
+        border-radius: 5px;
+        border: 1px solid blue;
+        margin-top: 5px;
+      }
+      .login form button {
+        margin-top: 10px;
+        background-color: blue;
+        color: white;
+        height: 30px;
+        border-radius: 5px;
+        border: none;
+      }
+      .login form button:hover {
+        cursor: pointer;
+        background-color: navy;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <div class="login__title">
+        <h1>Login</h1>
+      </div>
+      <form method="post" action="/login">
+        <label>Username</label>
+        <input type="text" name="userName" /><br />
+        <label>Password</label>
+        <input type="password" name="userPassword" /><br />
+        <button type="submit" class="loginButton">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
